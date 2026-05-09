@@ -1,147 +1,157 @@
 window.WORKOUTS = window.WORKOUTS || [];
 
 window.WORKOUTS.push({
-  id: "peito-costas-ombro",
-  name: "Peito, Costas & Ombro",
-  description: "Treino focado em upper body: peito, costas, ombros e braços. Usa barra de elevações, halteres/kettlebell e peso corporal.",
+  id: "treino-to-gordo",
+  name: "Treino Tó Gordo",
+  description: "Full body com aquecimento, força, braços e core. Ideal para repetir 3x por semana.",
   steps: [
     {
       id: "warmup-1",
       phase: "warmup",
-      title: "Rotações de braços",
-      gif: "https://fitnessprogramer.com/wp-content/uploads/2021/07/Arm-Circles_Shoulders.gif",
-      description: "Aquece ombros e prepara a articulação antes dos presses, flexões e elevações.",
-      cues: ["Círculos controlados", "Ombros soltos", "Sem pressa"],
-      medium: { duration: 45, prescription: "20s frente + 20s trás" },
-      hard: { duration: 60, prescription: "30s frente + 30s trás" }
+      title: "Marcha rápida no sítio",
+      gif: "https://fitnessprogramer.com/wp-content/uploads/2021/08/High-Knee-Run.gif",
+      description: "Sobe ligeiramente os joelhos e mexe os braços.",
+      cues: ["Postura alta", "Respiração controlada", "Ritmo confortável"],
+      medium: { duration: 30, prescription: "30 segundos contínuos" },
+      hard: { duration: 30, prescription: "30 segundos contínuos" }
     },
     {
       id: "warmup-2",
       phase: "warmup",
-      title: "Flexões escapulares",
-      gif: "https://gymvisual.com/img/p/1/2/4/5/1/12451.gif",
-      description: "Activa omoplatas e serrátil para proteger o ombro no treino.",
-      cues: ["Braços esticados", "Só mexem as omoplatas", "Core apertado"],
-      medium: { duration: 45, prescription: "10 reps" },
-      hard: { duration: 60, prescription: "12 reps" }
+      title: "Rotações de braços",
+      gif: "https://fitnessprogramer.com/wp-content/uploads/2021/07/Arm-Circles_Shoulders.gif",
+      description: "Prepara ombros e parte superior.",
+      cues: ["Braços esticados", "Círculos controlados", "Ombros relaxados"],
+      medium: { duration: 30, prescription: "15s frente + 15s trás" },
+      hard: { duration: 30, prescription: "15s frente + 15s trás" }
     },
     {
       id: "warmup-3",
       phase: "warmup",
-      title: "Dead hang",
-      gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/dead-hang.png",
-      description: "Prepara grip, dorsais e ombros para as elevações.",
-      cues: ["Mãos fortes", "Ombros activos", "Sem dor"],
-      medium: { duration: 45, prescription: "2 x 20s" },
-      hard: { duration: 60, prescription: "2 x 30s" }
+      title: "Agachamento sem peso",
+      gif: "https://fitnessprogramer.com/wp-content/uploads/2021/05/bodyweight-squat-full-version.gif",
+      description: "Aquece pernas, joelhos e ancas.",
+      cues: ["Peito alto", "Calcanhares no chão", "Joelhos acompanham os pés"],
+      medium: { duration: 45, prescription: "10 reps" },
+      hard: { duration: 50, prescription: "12 reps" }
     },
     {
       id: "warmup-4",
       phase: "warmup",
-      title: "High plank",
+      title: "Good morning sem peso",
+      gif: "https://fitnessprogramer.com/wp-content/uploads/2023/10/Dumbbell-Good-Morning.gif",
+      description: "Prepara posterior da coxa, glúteos e lombar.",
+      cues: ["Anca para trás", "Costas direitas", "Joelhos ligeiramente flectidos"],
+      medium: { duration: 45, prescription: "10 reps" },
+      hard: { duration: 50, prescription: "12 reps" }
+    },
+    {
+      id: "warmup-5",
+      phase: "warmup",
+      title: "Flexões escapulares",
+      gif: "https://gymvisual.com/img/p/1/2/4/5/1/12451.gif",
+      description: "Activa omoplatas e serrátil. Braços sempre esticados.",
+      cues: ["Braços esticados", "Só mexem as omoplatas", "Core apertado"],
+      medium: { duration: 45, prescription: "10 reps" },
+      hard: { duration: 50, prescription: "12 reps" }
+    },
+    {
+      id: "warmup-6",
+      phase: "warmup",
+      title: "Prancha curta",
       gif: "https://fitnessprogramer.com/wp-content/uploads/2023/07/High-Plank.gif",
-      description: "Liga o core e prepara a posição das flexões.",
-      cues: ["Corpo em linha", "Glúteos contraídos", "Mãos debaixo dos ombros"],
+      description: "Acorda o core antes dos exercícios principais.",
+      cues: ["Corpo em linha recta", "Glúteos contraídos", "Lombar estável"],
       medium: { duration: 30, prescription: "1 x 30s" },
-      hard: { duration: 45, prescription: "1 x 45s" }
+      hard: { duration: 40, prescription: "1 x 40s" }
+    },
+    {
+      id: "warmup-7",
+      phase: "warmup",
+      title: "Dead hang",
+      gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/dead-hang.png",
+      description: "Prepara mãos, dorsais e ombros para as elevações.",
+      cues: ["Mãos fortes", "Ombros activos", "Sem dor no ombro"],
+      medium: { duration: 45, prescription: "2 x 20s" },
+      hard: { duration: 60, prescription: "2 x 30s" }
+    },
+    {
+      id: "squat",
+      phase: "main",
+      title: "Heel Elevated Goblet Squat",
+      gif: "https://fitnessprogramer.com/wp-content/uploads/2025/07/Heel-Elevated-Goblet-Squat.gif",
+      description: "Séries controladas. Prioridade: amplitude e técnica.",
+      cues: ["Calcanhares elevados", "Peso junto ao peito", "Joelhos acompanham os pés"],
+      medium: { duration: 240, prescription: "3 séries x 12 reps" },
+      hard: { duration: 300, prescription: "4 séries x 12 reps" }
     },
     {
       id: "pullup",
       phase: "main",
       title: "Elevações",
       gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Pull-up.gif",
-      description: "Exercício principal de costas. Se não conseguires, faz negativas lentas.",
-      cues: ["Sem balanço", "Peito em direcção à barra", "Desce controlado"],
-      medium: { duration: 300, prescription: "3 séries x 5 reps" },
-      hard: { duration: 360, prescription: "4 séries x 5 reps" }
+      description: "Se estiver pesado, faz negativas lentas.",
+      cues: ["Sem balanço", "Peito em direcção à barra", "Pára antes da falha"],
+      medium: { duration: 240, prescription: "3 séries x 5 reps" },
+      hard: { duration: 300, prescription: "4 séries x 5 reps" }
     },
     {
       id: "pushup",
       phase: "main",
       title: "Flexões",
       gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Push-Up.gif",
-      description: "Exercício principal de peito. Mantém o corpo rígido.",
-      cues: ["Peito quase ao chão", "Cotovelos ligeiramente para trás", "Corpo em linha"],
+      description: "Mantém boa forma. Joelhos no chão se a técnica cair.",
+      cues: ["Corpo em linha recta", "Peito quase ao chão", "Cotovelos ligeiramente para trás"],
       medium: { duration: 240, prescription: "3 séries x 15 reps" },
       hard: { duration: 300, prescription: "4 séries x 15 reps" }
+    },
+    {
+      id: "rdl",
+      phase: "main",
+      title: "Peso morto romeno",
+      gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Barbell-Romanian-Deadlift.gif",
+      description: "Posterior da coxa e glúteo. Reps lentas e limpas.",
+      cues: ["Anca para trás", "Costas direitas", "Sente alongar atrás da coxa"],
+      medium: { duration: 240, prescription: "3 séries x 12 reps" },
+      hard: { duration: 300, prescription: "4 séries x 12 reps" }
     },
     {
       id: "row",
       phase: "main",
       title: "Remada unilateral",
       gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Row.gif",
-      description: "Mais volume para costas. Puxa o peso para a anca.",
-      cues: ["Tronco estável", "Cotovelo para trás", "Controla a descida"],
+      description: "Alterna lado direito e esquerdo.",
+      cues: ["Tronco estável", "Cotovelo para trás", "Não rodar o corpo"],
       medium: { duration: 240, prescription: "3 séries x 12 por lado" },
       hard: { duration: 300, prescription: "4 séries x 12 por lado" }
     },
     {
-      id: "shoulder-press",
+      id: "press",
       phase: "main",
       title: "Press militar",
       gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif",
-      description: "Exercício principal de ombros. Não arqueies a lombar.",
-      cues: ["Barriga apertada", "Empurra acima da cabeça", "Desce controlado"],
+      description: "Empurra acima da cabeça com controlo.",
+      cues: ["Barriga apertada", "Glúteos activos", "Desce controlado"],
       medium: { duration: 240, prescription: "3 séries x 10 reps" },
       hard: { duration: 300, prescription: "4 séries x 10 reps" }
-    },
-    {
-      id: "lateral-raise",
-      phase: "main",
-      title: "Elevações laterais",
-      gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif",
-      description: "Foco no deltóide lateral. Usa carga leve e controlo.",
-      cues: ["Cotovelos suaves", "Não encolher ombros", "Sobe até linha dos ombros"],
-      medium: { duration: 180, prescription: "3 séries x 12 reps" },
-      hard: { duration: 240, prescription: "4 séries x 12 reps" }
-    },
-    {
-      id: "incline-pushup",
-      phase: "main",
-      title: "Flexões inclinadas ou pés elevados",
-      gif: "https://fitnessprogramer.com/wp-content/uploads/2021/06/Decline-Push-Up.gif",
-      description: "Segundo estímulo de peito. Se pés elevados for pesado, faz normal.",
-      cues: ["Corpo rígido", "Peito desce controlado", "Sem deixar a lombar cair"],
-      medium: { duration: 180, prescription: "3 séries x 12 reps" },
-      hard: { duration: 240, prescription: "4 séries x 12 reps" }
-    },
-    {
-      id: "rear-delt-row",
-      phase: "main",
-      title: "Remada alta / rear delt row",
-      gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Rear-Delt-Row.gif",
-      description: "Foco em parte de trás do ombro e postura.",
-      cues: ["Cotovelos abrem ligeiramente", "Peso controlado", "Pescoço relaxado"],
-      medium: { duration: 180, prescription: "3 séries x 12 reps" },
-      hard: { duration: 240, prescription: "4 séries x 12 reps" }
     },
     {
       id: "biceps",
       phase: "main",
       title: "Bicep curl",
       gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif",
-      description: "Acabamento de bíceps após as puxadas.",
-      cues: ["Cotovelos quietos", "Sem balanço", "Desce devagar"],
-      medium: { duration: 180, prescription: "3 séries x 12 reps" },
-      hard: { duration: 240, prescription: "4 séries x 12 reps" }
-    },
-    {
-      id: "triceps",
-      phase: "main",
-      title: "Extensão de tríceps acima da cabeça",
-      gif: "https://fitnessprogramer.com/wp-content/uploads/2021/04/Dumbbell-Overhead-Triceps-Extension.gif",
-      description: "Acabamento de tríceps para complementar peito e ombro.",
-      cues: ["Cotovelos apontam para a frente", "Não abrir demasiado", "Movimento controlado"],
+      description: "Cotovelos perto do tronco, sem balançar o corpo.",
+      cues: ["Cotovelos quietos", "Sobe controlado", "Desce devagar"],
       medium: { duration: 180, prescription: "3 séries x 12 reps" },
       hard: { duration: 240, prescription: "4 séries x 12 reps" }
     },
     {
       id: "core-1",
       phase: "core",
-      title: "High plank",
+      title: "Prancha",
       gif: "https://fitnessprogramer.com/wp-content/uploads/2023/07/High-Plank.gif",
-      description: "Fecha com core e estabilidade de ombro.",
-      cues: ["Mãos firmes", "Costas direitas", "Respiração controlada"],
+      description: "Pranchas curtas e bem feitas.",
+      cues: ["Corpo em linha recta", "Respiração controlada", "Abdómen firme"],
       medium: { duration: 60, prescription: "2 x 30s" },
       hard: { duration: 90, prescription: "3 x 30s" }
     },
@@ -150,8 +160,8 @@ window.WORKOUTS.push({
       phase: "core",
       title: "Dead bug",
       gif: "https://fitnessprogramer.com/wp-content/uploads/2021/02/Dead-Bug.gif",
-      description: "Core lento e controlado para terminar.",
-      cues: ["Lombar estável", "Movimento lento", "Braço e perna opostos"],
+      description: "Movimento lento, sem arquear a lombar.",
+      cues: ["Lombar estável", "Braço e perna opostos", "Devagar"],
       medium: { duration: 60, prescription: "2 séries x 10 por lado" },
       hard: { duration: 90, prescription: "3 séries x 10 por lado" }
     }
