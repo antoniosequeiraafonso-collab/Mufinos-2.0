@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#07111f" />
+  <title>Treino Mufino 2.0</title>
+  <style>
+    :root {
+      --bg:#07111f; --panel:#0f172a; --panel2:#111827; --text:#f8fafc; --muted:#cbd5e1; --soft:#94a3b8;
+      --line:rgba(148,163,184,.22); --accent:#22c55e; --blue:#38bdf8; --danger:#fb7185; --warn:#fbbf24;
+      --radius:28px; --safe-bottom:env(safe-area-inset-bottom,0px);
+    }
+    *{box-sizing:border-box} html{scroll-behavior:smooth}
+    body{margin:0;min-height:100vh;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 20% 0%,rgba(56,189,248,.20),transparent 30%),radial-gradient(circle at 80% 8%,rgba(34,197,94,.18),transparent 34%),linear-gradient(180deg,#0f172a 0%,#07111f 50%,#020617 100%);color:var(--text);padding-bottom:calc(66px + var(--safe-bottom))}
+    button,input,select{font:inherit} .hidden{display:none!important}
+    .app{max-width:760px;margin:0 auto;padding:16px 14px 30px}.hero{padding:14px 2px 10px}
+    h1{margin:0;font-size:clamp(2rem,10vw,4rem);line-height:.94;letter-spacing:-.07em} h2{margin:0;font-size:1.35rem;letter-spacing:-.035em} h3{margin:0;font-size:1.45rem;line-height:1.05;letter-spacing:-.045em}
+    p{color:var(--muted);line-height:1.45;margin:10px 0 0}.muted{color:var(--muted)}
+    button{min-height:40px;border:0;border-radius:999px;padding:9px 12px;cursor:pointer;font-weight:950;background:var(--accent);color:#052e16;touch-action:manipulation}button.secondary{background:rgba(51,65,85,.95);color:var(--text)}button.danger{background:rgba(251,113,133,.95);color:#fff1f2}button.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}button.warn{background:var(--warn);color:#422006}
+    input,select{width:100%;min-height:46px;border:1px solid var(--line);background:#020617;color:var(--text);border-radius:16px;padding:12px}
+    .card,.history-card{background:linear-gradient(180deg,rgba(15,23,42,.94),rgba(17,24,39,.94));border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:0 22px 60px rgba(0,0,0,.28);margin:12px 0}.soft-card{background:rgba(2,6,23,.36);border:1px solid var(--line);border-radius:20px;padding:13px}.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.split{display:flex;justify-content:space-between;align-items:end;gap:12px}.mt{margin-top:12px}
+    .app-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 0;background:transparent}.app-tab{border:1px solid var(--line);border-radius:999px;padding:10px 8px;text-align:center;color:var(--muted);background:rgba(15,23,42,.72);font-size:.86rem;font-weight:950;cursor:pointer}.app-tab.active{background:rgba(34,197,94,.14);color:#bbf7d0;border-color:rgba(34,197,94,.36)}
+    .top-card{position:sticky;top:0;z-index:30;background:linear-gradient(180deg,rgba(15,23,42,.98),rgba(17,24,39,.96));border:1px solid var(--line);border-radius:0 0 20px 20px;padding:8px 12px;box-shadow:0 14px 38px rgba(0,0,0,.34);margin:8px -14px 10px;backdrop-filter:blur(18px)}
+    .timer-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.timer{font-size:clamp(1.85rem,8vw,3rem);font-weight:950;line-height:.95;letter-spacing:-.08em}.exercise-timer{margin-top:2px;font-size:clamp(1.25rem,5.5vw,2rem);font-weight:950;line-height:.95;letter-spacing:-.05em;color:#bbf7d0}.mini-label{display:block;color:var(--soft);font-size:.72rem;font-weight:750;margin-bottom:2px}.compact-status{margin-top:4px;font-size:.82rem;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .round-progress{width:50px;height:50px;border-radius:999px;display:grid;place-items:center;background:conic-gradient(var(--accent) 0deg,rgba(51,65,85,.8) 0deg);position:relative}.round-progress:after{content:"";width:38px;height:38px;border-radius:999px;background:#0f172a;position:absolute}.round-progress span{position:relative;z-index:1;font-weight:950;font-size:.78rem}.button-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:6px}
+    .flow-nav{position:sticky;top:98px;z-index:10;padding:6px 0 8px;background:transparent;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.flow-pill{border:1px solid var(--line);border-radius:999px;padding:9px 8px;text-align:center;color:var(--muted);background:rgba(15,23,42,.58);font-size:.84rem;font-weight:900;box-shadow:0 8px 22px rgba(0,0,0,.12)}.flow-pill.active{background:rgba(34,197,94,.14);color:#bbf7d0;border-color:rgba(34,197,94,.36)}
+    .section-title{margin:20px 0 10px;display:flex;align-items:end;justify-content:space-between;gap:12px}.section-title span{color:var(--soft);font-size:.88rem;font-weight:800;white-space:nowrap}.step-card{border-radius:var(--radius);overflow:hidden;background:linear-gradient(180deg,rgba(15,23,42,.95),rgba(17,24,39,.95));border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.25);margin-bottom:14px;scroll-margin-top:170px;opacity:.62;transform:scale(.985);transition:.2s}.step-card.current{opacity:1;transform:scale(1);border-color:rgba(56,189,248,.72);box-shadow:0 0 0 5px rgba(56,189,248,.10),0 22px 60px rgba(0,0,0,.36)}.step-card.done{opacity:.82;border-color:rgba(34,197,94,.32)}
+    .media{position:relative;background:#fff;aspect-ratio:10/7;display:grid;place-items:center;padding:10px}.media img{width:70%;height:70%;object-fit:contain;display:block}.step-number,.duration-badge{position:absolute;top:12px;border-radius:999px;padding:7px 11px;font-weight:950;font-size:.85rem}.step-number{left:12px;background:rgba(2,6,23,.85);color:var(--text);border:1px solid rgba(255,255,255,.18)}.duration-badge{right:12px;background:rgba(34,197,94,.92);color:#052e16}
+    .prescription{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 0}.prescription-item{background:rgba(56,189,248,.10);border:1px solid rgba(56,189,248,.26);border-radius:16px;padding:11px}.prescription-item small{display:block;color:var(--soft);font-size:.78rem;font-weight:850;margin-bottom:4px}.prescription-item strong{display:block;font-size:1.05rem;line-height:1.12}.step-body{padding:16px}.step-body p{margin-top:8px}.cue-list{display:grid;gap:8px;margin:12px 0 0}.cue{display:flex;gap:9px;align-items:flex-start;color:var(--muted);background:rgba(2,6,23,.36);border:1px solid var(--line);border-radius:16px;padding:10px;font-size:.95rem}.cue b{color:#bbf7d0}.complete-btn{width:100%;margin-top:14px;font-size:1.03rem}.complete-btn.done{background:rgba(51,65,85,.95);color:var(--text)}
+    .history-list{display:grid;gap:8px;margin-top:10px;max-height:320px;overflow:auto}.history-item{background:rgba(2,6,23,.42);border:1px solid var(--line);border-radius:16px;padding:11px;color:var(--muted);font-size:.92rem;display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.history-item button{min-height:34px;padding:7px 10px;font-size:.82rem}.tag{display:inline-flex;border:1px solid var(--line);background:rgba(51,65,85,.62);color:var(--muted);border-radius:999px;padding:4px 8px;font-size:.72rem;font-weight:850}
+    .bottom-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:6px 10px calc(6px + var(--safe-bottom));background:rgba(2,6,23,.92);border-top:1px solid var(--line);backdrop-filter:blur(18px)}.bottom-inner{max-width:760px;margin:auto;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}.bottom-inner small{color:var(--soft);display:block;font-weight:800;margin-bottom:0;font-size:.68rem;line-height:1}.bottom-inner strong{display:block;font-size:.9rem;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.bottom-actions{display:flex;gap:6px}.bottom-actions button{min-height:34px;padding:7px 11px;font-size:.86rem}
+    .modal-backdrop{position:fixed;inset:0;z-index:100;background:rgba(2,6,23,.72);backdrop-filter:blur(10px);display:none;align-items:end;padding:14px}.modal-backdrop.show{display:flex}.modal{width:100%;max-width:760px;margin:0 auto;background:linear-gradient(180deg,rgba(15,23,42,.98),rgba(17,24,39,.98));border:1px solid var(--line);border-radius:24px;padding:16px;box-shadow:0 22px 70px rgba(0,0,0,.48)}.modal h2{margin:0}.modal label{display:block;color:var(--soft);font-size:.82rem;font-weight:850;margin:12px 0 6px}.modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.workout-option{width:100%;text-align:left;border-radius:20px;background:rgba(2,6,23,.42);border:1px solid var(--line);color:var(--text);padding:13px}.workout-option.selected{border-color:rgba(34,197,94,.55);background:rgba(34,197,94,.12)}
+    @media(max-width:520px){.app{padding-left:12px;padding-right:12px}.prescription{grid-template-columns:1fr}.top-card{padding:7px 10px;margin-left:-12px;margin-right:-12px}.button-row{grid-template-columns:1fr 1fr}.button-row button:first-child{grid-column:1/-1}.round-progress{width:46px;height:46px}.round-progress:after{width:34px;height:34px}.flow-nav{top:92px}.step-body h3{font-size:1.35rem}.bottom-inner{grid-template-columns:minmax(0,1fr) auto}.bottom-actions{display:flex}.bottom-actions button{width:auto}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <h1>Treino Mufino 2.0</h1>
+      <p>Carrega em Start, escolhe o treino e a dificuldade. Só depois aparece o workout, com timer por exercício e avisos sonoros.</p>
+    </header>
+
+    <nav class="app-tabs">
+      <div class="app-tab active" id="tab-workout" onclick="showAppTab('workout')">Treino</div>
+      <div class="app-tab" id="tab-history" onclick="showAppTab('history')">Histórico</div>
+    </nav>
+
+    <div id="workoutView" class="tab-view">
+      <section class="top-card">
+        <div class="timer-row">
+          <div>
+            <span class="mini-label">Tempo total</span>
+            <div class="timer" id="timer">00:00</div>
+            <span class="mini-label">Exercício actual</span>
+            <div class="exercise-timer" id="exerciseTimer">00:00</div>
+          </div>
+          <div class="round-progress" id="roundProgress"><span id="overallPct">0%</span></div>
+        </div>
+        <p id="statusText" class="compact-status">Escolhe um treino para começar.</p>
+        <div class="button-row">
+          <button onclick="openStartModal()">Start</button>
+          <button class="secondary" onclick="pauseTimer()">Pausar</button>
+          <button class="ghost" onclick="resetTimer()">Reset</button>
+        </div>
+      </section>
+
+      <section id="emptyWorkout" class="card">
+        <h2>Nenhum treino seleccionado</h2>
+        <p>O workout só aparece depois de carregares em <b>Start</b> e escolheres o treino + nível.</p>
+        <button class="mt" onclick="openStartModal()">Escolher treino</button>
+      </section>
+
+      <section id="activeWorkout" class="hidden">
+        <div class="card">
+          <div class="split"><div><h2 id="workoutName">Treino</h2><p id="workoutDescription"></p></div><span class="tag" id="difficultyTag">Médio</span></div>
+        </div>
+        <nav class="flow-nav">
+          <div class="flow-pill" id="nav-warmup">Aquecer</div>
+          <div class="flow-pill" id="nav-main">Treinar</div>
+          <div class="flow-pill" id="nav-core">Fechar</div>
+        </nav>
+        <section id="warmupSection"><div class="section-title"><h2>1. Aquecimento</h2><span>—</span></div><div id="warmupList"></div></section>
+        <section id="mainSection"><div class="section-title"><h2>2. Treino principal</h2><span>—</span></div><div id="mainList"></div></section>
+        <section id="coreSection"><div class="section-title"><h2>3. Core final</h2><span>—</span></div><div id="coreList"></div></section>
+      </section>
+    </div>
+
+    <div id="historyView" class="tab-view hidden">
+      <section class="history-card">
+        <h2>Histórico</h2>
+        <p>Consulta os treinos gravados. Também podes adicionar um treino manualmente ou apagar entradas.</p>
+        <div class="button-row"><button onclick="saveWorkout()">Gravar treino actual</button><button class="secondary" onclick="addManualWorkout()">Adicionar treino</button></div>
+        <div class="history-list" id="historyList"></div>
+      </section>
+      <section class="card">
+        <h2>Adicionar novos treinos no GitHub</h2>
+        <p>Cria um novo ficheiro dentro da pasta <b>workouts</b> e adiciona o caminho ao ficheiro <b>workouts.js</b>. Não precisas de mexer no index.</p>
+      </section>
+    </div>
+  </div>
+
+  <div class="bottom-bar hidden" id="bottomBar"><div class="bottom-inner"><div><small>Agora</small><strong id="nextStep">—</strong></div><div class="bottom-actions"><button class="secondary" onclick="markCurrentDone()">Feito</button><button onclick="goCurrent()">Ver</button></div></div></div>
+
+  <div class="modal-backdrop" id="startModal"><div class="modal"><h2>Começar treino</h2><p>Escolhe primeiro o treino e depois o nível.</p><label>Treino</label><div id="workoutOptions" class="mt"></div><label>Nível</label><div class="modal-actions"><button id="mediumBtn" onclick="selectDifficulty('medium')">Médio</button><button id="hardBtn" class="secondary" onclick="selectDifficulty('hard')">Difícil</button></div><div class="modal-actions"><button class="secondary" onclick="closeStartModal()">Cancelar</button><button onclick="startSelectedWorkout()">Começar</button></div></div></div>
+  <div class="modal-backdrop" id="manualModal"><div class="modal"><h2>Adicionar treino</h2><p>Escolhe a data e a percentagem concluída.</p><label for="manualDate">Data</label><input type="date" id="manualDate"/><label for="manualPct">Percentagem concluída</label><input type="number" id="manualPct" min="0" max="100" value="100"/><div class="modal-actions"><button class="secondary" onclick="closeManualModal()">Cancelar</button><button onclick="confirmManualWorkout()">Guardar</button></div></div></div>
+  <div class="modal-backdrop" id="deleteModal"><div class="modal"><h2>Apagar treino?</h2><p>Esta acção remove o treino do histórico. Tens a certeza?</p><div class="modal-actions"><button class="secondary" onclick="closeDeleteModal()">Cancelar</button><button class="danger" onclick="confirmDeleteWorkout()">Apagar</button></div></div></div>
+
+  <script src="workouts.js"></script>
+  <script>
+    const DEFAULT_WORKOUTS = [];
+    const WORKOUTS = Array.isArray(window.WORKOUTS) && window.WORKOUTS.length ? window.WORKOUTS : DEFAULT_WORKOUTS;
+
+    const STORAGE_TODAY="fullBodyFlowTodayV2";
+    const STORAGE_HISTORY="fullBodyFlowHistoryV2";
+    let today=JSON.parse(localStorage.getItem(STORAGE_TODAY)||"{}");
+    let history=JSON.parse(localStorage.getItem(STORAGE_HISTORY)||"[]");
+    let pendingDeleteIndex=null;
+    let selectedDifficulty="medium";
+    let selectedWorkoutId=WORKOUTS[0]?.id || null;
+    let activeWorkout=null;
+    let activeSteps=[];
+    let timerSeconds=0;
+    let exerciseSeconds=0;
+    let timerInterval=null;
+    let audioCtx=null;
+    let warnedSeconds=new Set();
+
+    function $(id){return document.getElementById(id)}
+    function saveToday(){localStorage.setItem(STORAGE_TODAY,JSON.stringify(today))}
+    function isDone(id){return !!today[id]?.done}
+    function setDone(id,value){today[id]={done:value,completedAt:value?new Date().toISOString():null};saveToday();render();}
+    function getCurrentStep(){return activeSteps.find(s=>!isDone(s.id))||null}
+    function formatTime(s){s=Math.max(0,s);const m=Math.floor(s/60).toString().padStart(2,"0");const sec=(s%60).toString().padStart(2,"0");return `${m}:${sec}`}
+    function formatDurationLabel(seconds){const m=Math.floor(seconds/60);const r=seconds%60;return r?`${m}m ${r}s`:`${m} min`}
+    function getTotalDurationSeconds(){return activeSteps.reduce((sum,s)=>sum+(s.durationSeconds||0),0)}
+    function getCurrentStepDuration(){return getCurrentStep()?.durationSeconds||0}
+    function buildSteps(workout, difficulty){return workout.steps.map((s,i)=>{const d=s[difficulty]||s.medium;return {...s,id:`${s.id}-${i}`,durationSeconds:d.duration,duration:formatDurationLabel(d.duration),prescription:d.prescription}})}
+
+    function fallbackAnimation(step){const title=(step.title||"Exercício").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");const svg=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420"><rect width="420" height="420" fill="#fff"/><text x="210" y="54" text-anchor="middle" font-family="Arial" font-size="22" font-weight="800" fill="#0f172a">${title}</text><circle cx="210" cy="150" r="28" fill="#0f172a"/><line x1="210" y1="180" x2="210" y2="260" stroke="#0f172a" stroke-width="18" stroke-linecap="round"><animate attributeName="y2" values="260;235;260" dur="1.1s" repeatCount="indefinite"/></line><line x1="210" y1="205" x2="145" y2="245" stroke="#0f172a" stroke-width="16" stroke-linecap="round"/><line x1="210" y1="205" x2="275" y2="245" stroke="#0f172a" stroke-width="16" stroke-linecap="round"/><text x="210" y="382" text-anchor="middle" font-family="Arial" font-size="14" font-weight="800" fill="#166534">GIF externo indisponível</text></svg>`;return "data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(svg)}
+    function handleImageError(img,stepId){const step=activeSteps.find(s=>s.id===stepId);img.onerror=null;img.src=fallbackAnimation(step||{title:"Exercício"})}
+    function renderStep(step,index){const done=isDone(step.id);const current=getCurrentStep()?.id===step.id;const media=step.gif?`<img src="${step.gif}" alt="GIF de ${step.title}" loading="lazy" onerror="handleImageError(this,'${step.id}')"/>`:`<img src="${fallbackAnimation(step)}" alt="Animação"/>`;return `<article class="step-card ${done?"done":""} ${current?"current":""}" id="step-${step.id}"><div class="media"><span class="step-number">${index+1}/${activeSteps.length}</span><span class="duration-badge">${step.duration}</span>${media}</div><div class="step-body"><h3>${step.title}</h3><div class="prescription"><div class="prescription-item"><small>Séries / reps</small><strong>${step.prescription}</strong></div><div class="prescription-item"><small>Tempo do bloco</small><strong>${step.duration}</strong></div></div><p>${step.description||""}</p><div class="cue-list">${(step.cues||[]).map(c=>`<div class="cue"><b>✓</b><span>${c}</span></div>`).join("")}</div><button class="complete-btn ${done?"done":""}" onclick="setDone('${step.id}',${done?"false":"true"})">${done?"Marcado como feito":"Marcar como feito"}</button></div></article>`}
+
+    function render(){if(!activeWorkout){$("emptyWorkout").classList.remove("hidden");$("activeWorkout").classList.add("hidden");$("bottomBar").classList.add("hidden");updateTimer();renderHistory();return;}$("emptyWorkout").classList.add("hidden");$("activeWorkout").classList.remove("hidden");$("bottomBar").classList.toggle("hidden",$("historyView").classList.contains("hidden")===false);$("workoutName").textContent=activeWorkout.name;$("workoutDescription").textContent=activeWorkout.description;$("difficultyTag").textContent=selectedDifficulty==="hard"?"Difícil":"Médio";$("warmupList").innerHTML=activeSteps.filter(s=>s.phase==="warmup").map(s=>renderStep(s,activeSteps.indexOf(s))).join("");$("mainList").innerHTML=activeSteps.filter(s=>s.phase==="main").map(s=>renderStep(s,activeSteps.indexOf(s))).join("");$("coreList").innerHTML=activeSteps.filter(s=>s.phase==="core").map(s=>renderStep(s,activeSteps.indexOf(s))).join("");updateDurationLabels();updateStats();renderHistory();}
+    function updateDurationLabels(){if(!activeSteps.length)return;$("warmupSection").querySelector(".section-title span").textContent=formatDurationLabel(activeSteps.filter(s=>s.phase==="warmup").reduce((a,s)=>a+s.durationSeconds,0));$("mainSection").querySelector(".section-title span").textContent=formatDurationLabel(activeSteps.filter(s=>s.phase==="main").reduce((a,s)=>a+s.durationSeconds,0));$("coreSection").querySelector(".section-title span").textContent=formatDurationLabel(activeSteps.filter(s=>s.phase==="core").reduce((a,s)=>a+s.durationSeconds,0));}
+    function updateStats(){const done=activeSteps.filter(s=>isDone(s.id)).length;const pct=activeSteps.length?Math.round(done/activeSteps.length*100):0;const current=getCurrentStep();$("overallPct").textContent=pct+"%";$("roundProgress").style.background=`conic-gradient(var(--accent) ${pct*3.6}deg, rgba(51,65,85,.8) 0deg)`;$("nextStep").textContent=current?current.title:"Treino completo";$("statusText").textContent=current?`${selectedDifficulty==="hard"?"Difícil":"Médio"}. ${current.prescription}.`:"Treino completo. Grava no histórico.";$("nav-warmup").classList.toggle("active",current?.phase==="warmup");$("nav-main").classList.toggle("active",current?.phase==="main");$("nav-core").classList.toggle("active",current?.phase==="core"||(!current&&activeSteps.length));updateExerciseTimer();}
+
+    function openStartModal(){renderWorkoutOptions();selectDifficulty(selectedDifficulty);$("startModal").classList.add("show")}
+    function closeStartModal(){$("startModal").classList.remove("show")}
+    function renderWorkoutOptions(){if(!WORKOUTS.length){$("workoutOptions").innerHTML=`<p>Sem treinos carregados. Confirma os ficheiros workouts.js e a pasta workouts.</p>`;return;}$("workoutOptions").innerHTML=WORKOUTS.map(w=>`<button class="workout-option ${w.id===selectedWorkoutId?"selected":""}" onclick="selectWorkout('${w.id}')"><b>${w.name}</b><p>${w.description}</p></button>`).join("")}
+    function selectWorkout(id){selectedWorkoutId=id;renderWorkoutOptions()}
+    function selectDifficulty(level){selectedDifficulty=level;$("mediumBtn").className=level==="medium"?"":"secondary";$("hardBtn").className=level==="hard"?"warn":"secondary"}
+    function startSelectedWorkout(){activeWorkout=WORKOUTS.find(w=>w.id===selectedWorkoutId);if(!activeWorkout){alert("Escolhe um treino primeiro.");return;}activeSteps=buildSteps(activeWorkout,selectedDifficulty);today={};saveToday();timerSeconds=getTotalDurationSeconds();exerciseSeconds=getCurrentStepDuration();warnedSeconds=new Set();closeStartModal();render();unlockAudio();startTimer();setTimeout(goCurrent,100)}
+
+    function showAppTab(tab){const workout=tab==="workout";$("workoutView").classList.toggle("hidden",!workout);$("historyView").classList.toggle("hidden",workout);$("tab-workout").classList.toggle("active",workout);$("tab-history").classList.toggle("active",!workout);$("bottomBar").classList.toggle("hidden",!workout||!activeWorkout);if(!workout)renderHistory();window.scrollTo({top:0,behavior:"smooth"})}
+    function goCurrent(){const current=getCurrentStep();const target=current?$(`step-${current.id}`):$("historyView");target.scrollIntoView({behavior:"smooth",block:"start"})}
+    function markCurrentDone(){const current=getCurrentStep();if(!current){saveWorkout();return;}setDone(current.id,true);startCurrentExerciseTimer();setTimeout(goCurrent,80)}
+    function saveWorkout(){if(!activeWorkout){alert("Ainda não tens nenhum treino activo.");return;}const done=activeSteps.filter(s=>isDone(s.id)).length;const pct=Math.round(done/activeSteps.length*100);history.unshift({date:new Date().toLocaleString("pt-PT"),workoutName:activeWorkout.name,difficulty:selectedDifficulty,done,total:activeSteps.length,pct});history=history.slice(0,50);localStorage.setItem(STORAGE_HISTORY,JSON.stringify(history));resetCurrentWorkout(true);alert("Treino gravado! O treino foi reposto.");renderHistory();showAppTab("history")}
+    function renderHistory(){const list=$("historyList");if(!history.length){list.innerHTML=`<div class="history-item">Ainda sem treinos gravados.</div>`;return;}list.innerHTML=history.map((h,i)=>`<div class="history-item"><div><strong>${h.date}</strong>${h.manual?` <span class="tag">manual</span>`:""}<br>${h.workoutName||"Treino"} · ${h.difficulty==="hard"?"Difícil":"Médio"} · ${h.done}/${h.total} etapas · ${h.pct}%</div><button class="danger" onclick="deleteWorkout(${i})">Apagar</button></div>`).join("")}
+    function addManualWorkout(){$("manualDate").value=new Date().toISOString().slice(0,10);$("manualPct").value=100;$("manualModal").classList.add("show")}
+    function closeManualModal(){$("manualModal").classList.remove("show")}
+    function confirmManualWorkout(){const date=$("manualDate").value||new Date().toISOString().slice(0,10);const pct=Math.max(0,Math.min(100,Number($("manualPct").value)||100));const total=activeSteps.length||16;const done=Math.round(pct/100*total);history.unshift({date:`${date} 00:00`,workoutName:activeWorkout?.name||"Treino manual",difficulty:selectedDifficulty,done,total,pct,manual:true});history=history.slice(0,50);localStorage.setItem(STORAGE_HISTORY,JSON.stringify(history));closeManualModal();renderHistory()}
+    function deleteWorkout(index){pendingDeleteIndex=index;$("deleteModal").classList.add("show")}
+    function closeDeleteModal(){pendingDeleteIndex=null;$("deleteModal").classList.remove("show")}
+    function confirmDeleteWorkout(){if(pendingDeleteIndex===null)return;history.splice(pendingDeleteIndex,1);localStorage.setItem(STORAGE_HISTORY,JSON.stringify(history));closeDeleteModal();renderHistory()}
+
+    function updateTimer(){ $("timer").textContent=formatTime(timerSeconds); updateExerciseTimer(); if(timerSeconds<=0&&timerInterval){pauseTimer();playBeep("final");alert("Tempo total feito. Marca o que completaste e grava o treino.");} }
+    function updateExerciseTimer(){const current=getCurrentStep();$("exerciseTimer").textContent=current?formatTime(exerciseSeconds):"00:00"}
+    function startCurrentExerciseTimer(){exerciseSeconds=getCurrentStepDuration();warnedSeconds=new Set();updateExerciseTimer()}
+    function startTimer(){if(timerInterval||!activeWorkout)return;if(!exerciseSeconds)startCurrentExerciseTimer();unlockAudio();timerInterval=setInterval(()=>{timerSeconds--;if(getCurrentStep()){exerciseSeconds--;if(exerciseSeconds>0&&exerciseSeconds<=5&&!warnedSeconds.has(exerciseSeconds)){warnedSeconds.add(exerciseSeconds);playBeep("short")}if(exerciseSeconds===0){playBeep("final")}}updateTimer()},1000)}
+    function pauseTimer(){clearInterval(timerInterval);timerInterval=null}
+    function resetCurrentWorkout(keepNoScroll=false){pauseTimer();activeWorkout=null;activeSteps=[];today={};saveToday();timerSeconds=0;exerciseSeconds=0;warnedSeconds=new Set();render();updateTimer();if(!keepNoScroll)window.scrollTo({top:0,behavior:"smooth"})}
+    function resetTimer(){resetCurrentWorkout()}
+    function unlockAudio(){if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==="suspended")audioCtx.resume()}
+    function tone(freq,start,duration,gainValue=.28){const osc=audioCtx.createOscillator();const gain=audioCtx.createGain();osc.connect(gain);gain.connect(audioCtx.destination);osc.frequency.value=freq;gain.gain.setValueAtTime(0.0001,start);gain.gain.exponentialRampToValueAtTime(gainValue,start+.02);gain.gain.exponentialRampToValueAtTime(0.0001,start+duration);osc.start(start);osc.stop(start+duration)}
+    function playBeep(type="short"){try{unlockAudio();const now=audioCtx.currentTime;if(type==="final"){tone(520,now,.22,.32);tone(760,now+.25,.22,.32);tone(980,now+.5,.6,.38)}else{tone(880,now,.14,.24)}}catch(e){}}
+
+    window.showAppTab=showAppTab;window.openStartModal=openStartModal;window.closeStartModal=closeStartModal;window.selectWorkout=selectWorkout;window.selectDifficulty=selectDifficulty;window.startSelectedWorkout=startSelectedWorkout;window.setDone=setDone;window.pauseTimer=pauseTimer;window.resetTimer=resetTimer;window.markCurrentDone=markCurrentDone;window.goCurrent=goCurrent;window.saveWorkout=saveWorkout;window.addManualWorkout=addManualWorkout;window.closeManualModal=closeManualModal;window.confirmManualWorkout=confirmManualWorkout;window.deleteWorkout=deleteWorkout;window.closeDeleteModal=closeDeleteModal;window.confirmDeleteWorkout=confirmDeleteWorkout;window.handleImageError=handleImageError;
+    render();updateTimer();renderHistory();
+  </script>
+</body>
+</html>
